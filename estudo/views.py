@@ -1,7 +1,8 @@
 from estudo import app, db
-from flask import render_template , url_for, request
+from flask import render_template , url_for, request, redirect
 
 from estudo.models import Contato
+from estudo.forms import ContatoForm
 
 @app.route("/")
 def homepage():
@@ -14,8 +15,22 @@ def homepage():
     }
     return render_template('index.html', context=context)
 
+
 @app.route("/contato/", methods=['GET','POST'])
-def novapag():
+def contato():
+    form = ContatoForm()
+    context = {}
+    if form.validate_on_submit():
+        form.save()
+        return redirect(url_for('homepage'))
+        
+    return render_template('Contato.html', context=context, form=form)
+
+# Formato não recomendado
+
+
+@app.route("/contato_old/", methods=['GET','POST'])
+def contato_old():
     context = {}
     if request.method == 'GET':
         pesquisa = request.args.get('pesquisa')
@@ -38,5 +53,6 @@ def novapag():
         db.session.commit()
         
         
-    return render_template('Contato.html', context=context)
+    return render_template('Contato_old.html', context=context)
+
 
