@@ -26,6 +26,25 @@ def contato():
         
     return render_template('Contato.html', context=context, form=form)
 
+
+
+@app.route('/contato/lista/')
+def contatoLista():
+     context = {}
+     
+     if request.method == 'GET':
+         pesquisa = request.args.get('pesquisa','')         
+     
+     dados = Contato.query.order_by('nome')
+     if pesquisa != '':
+         dados = dados.filter_by(nome=pesquisa)
+     context = {'dados': dados.all()}
+     
+     return render_template('Contato_lista.html', context = context)   
+        
+
+
+
 # Formato não recomendado
 
 
@@ -54,5 +73,7 @@ def contato_old():
         
         
     return render_template('Contato_old.html', context=context)
+
+
 
 

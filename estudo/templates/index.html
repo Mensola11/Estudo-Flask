@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudo - Camp Code</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Estudo Flask - Camp Code</title>
 </head>
 <body>
     <div>
-        <h3>Estudo Flask</h3>
-        <h5>@CampCodeBrasil</h5>
+        <div class="col-12" justify-content="center">
+            <h1>
+            Estudo Flask
+            </h1>
+        </div>
     </div>
     
     <div>
         <p>Bem vindo {{context.usuario}} a aula de Flask!</p>
         <p> <b>Idade:</b> {{context.idade}}
     </div>
-    <a href="{{url_for('contato')}}"> Contato </a>
+    <a href="{{url_for('contato')}}"> Contato </a> <hr>
+    <a href="{{url_for('contatoLista')}}"> Contato - Lista </a>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
