@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head>
+{% extends 'base.html' %}
+
+{% block content%} 
 <body>
     <div class="container">
         <div class="row mt-4">
@@ -17,7 +12,7 @@
                     <input type="text" name="pesquisa" id="" class="form-control">
                 </div>
                 <div class="col-3">
-                    <button type="submit" class="btn btn-Black mt-4 col-12">pesquisa</button>
+                    <button type="submit" class="btn btn-dark mt-4 col-12">Pesquisa</button>
                 </div>
             </form>
 
@@ -31,19 +26,19 @@
         
             <form action="" method="post" class="row mt-2">
                 <div class="col-6">
-                    Nome
+                   <b> Nome </b>
                     <input type="text" name="nome" id="" class="form-control" required>
                 </div>
                 <div class="col-6">
-                    Email
+                    <b> Email </b>
                     <input type="email" name="email" id="" class="form-control" required>
                 </div>
                 <div class="col-12">
-                    Assunto
+                    <b> Assunto </b>
                     <input type="text" name="assunto" id="" class="form-control" required>
                 </div>
                 <div class="col-12">
-                    Mensagem
+                    <b> Mensagem </b>
                     <input type="text" name="mensagem" id="" class="form-control" required>
                 </div>
                 <div class="col-12">
@@ -51,6 +46,4 @@
                 </div>
             </form>
         </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
+{%endblock%}

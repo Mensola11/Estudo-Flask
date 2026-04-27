@@ -7,11 +7,11 @@ from estudo.forms import ContatoForm
 @app.route("/")
 def homepage():
     usuario = "CampCodeBrasil"
-    idade = "28 anos"
+    
     
     context = {
         'usuario':usuario,
-        'idade':idade
+        
     }
     return render_template('index.html', context=context)
 
@@ -41,6 +41,13 @@ def contatoLista():
      context = {'dados': dados.all()}
      
      return render_template('Contato_lista.html', context = context)   
+ 
+ 
+@app.route('/contato/<int:id>/')
+def contatoDetail(id):
+    obj = Contato.query.get(id)
+    
+    return render_template('contato_detail.html', obj=obj)  
         
 
 

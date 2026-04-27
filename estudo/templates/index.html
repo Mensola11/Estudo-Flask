@@ -1,26 +1,22 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Estudo Flask - Camp Code</title>
-</head>
+{% extends 'base.html' %}
+
+{% block content%} 
 <body>
     <div>
         <div class="col-12" justify-content="center">
+            <img class="rounded float-end mt-4" src="{{url_for('static', filename='img/Logo-Grupo-Petz-Cobasi-Branco.png') }}"width="230px" height="110px">
             <h1>
             Estudo Flask
             </h1>
         </div>
     </div>
     
-    <div>
-        <p>Bem vindo {{context.usuario}} a aula de Flask!</p>
-        <p> <b>Idade:</b> {{context.idade}}
+    {% include "nav.html" %}
+
+    <div class=" mt-2">
+        <p class=" text-light">Bem vindo <b>{{context.usuario}}</b> a aula de Flask!</p>
     </div>
-    <a href="{{url_for('contato')}}"> Contato </a> <hr>
-    <a href="{{url_for('contatoLista')}}"> Contato - Lista </a>
+    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
+
+{% endblock%}        
