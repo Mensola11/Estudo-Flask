@@ -42,7 +42,7 @@
                                 {% else %}
                                     Não
                                 {% endif %}
-                            <td><a href="{{ url_for('contatoDetail', id=linha.id)}}">Link</a></td>
+                            <td><a href="{{ url_for('contatoDetail', id=linha.id)}}"><img src="{{url_for('static', filename='img/link.png')}}" style="width:20px";"></a></td>
                             </td>
                         </tr>
                         {% endfor %}
