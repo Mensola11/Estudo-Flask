@@ -4,6 +4,8 @@ from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 load_dotenv('.env')
+from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__) 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
@@ -12,6 +14,9 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+bcrypt = Bcrypt(app)
 
 from estudo.views import homepage 
 from estudo.models import Contato
