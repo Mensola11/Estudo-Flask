@@ -1,29 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content%} 
+
+<div class="container">
 <body>
     <div>
         <div class="col-12" justify-content="center">
-            <img class="rounded float-end mt-4" src="{{url_for('static', filename='img/Logo-Grupo-Petz-Cobasi-Branco.png') }}"width="230px" height="110px">
-            <h1>
-            Estudo Flask
-            </h1>
+            <img class="rounded float-end mt-2 mb-2 " src="{{url_for('static', filename='img/Logo-Grupo-Petz-Cobasi-Branco.png') }}"width="230px" height="110px">
         </div>
     </div>
     
     {% include "nav.html" %}
 
-    <div class=" mt-2">
-        <p class=" text-light">Bem vindo <b>{{context.usuario}}</b> a aula de Flask!</p>
-    </div>
 {% if current_user.is_authenticated %}    
-<span class="btn btn-primary mb-4">{{current_user.nome}} {{current_user.sobrenome}}</span>
-<a href="" class="btn btn-danger mb-4">Sair</a>
+<hr>
+<span class="btn btn-primary mt-2 mb-4">{{current_user.nome}} {{current_user.sobrenome}}</span>
+<a href="{{url_for('logout')}}" class="btn btn-danger mt-2 mb-4">Sair</a>
 {% else %}
-<a href="{{url_for('cadastro')}}" class="btn btn-primary" >Faça seu Cadastro</a>
+
+<form action="" method="post" class="row mt-4 mb-4 ms-1">
+    <h3>Faça seu login:</h3>        
+    {{ form.csrf_token}}  
+            
+            {{ form.email.label()}}
+            {{ form.email(class="form-control")}}
+
+            {{ form.senha.label()}}
+            {{ form.senha(class="form-control")}}
+
+            
+            {{ form.btnSubmit(class="btn btn-primary col-12  mt-3 mb-3")}} 
+
+            <div class="col-12 mt-4">Não tem cadastro? <a href="{{url_for('cadastro')}}">Clique aqui e faça seu Cadastro</a></div>
+            </form>
+
 {% endif %}
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 {% endblock%}        
+</div>
