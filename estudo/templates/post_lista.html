@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content%} 
+
+{% include "nav.html" %}
+<body>
+    <div class="container mt-4">
+        
+        <div class="row mt-4">
+            <h3>Lista de Posts</h3>
+
+           
+            <div class="col-12 mt-2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><b>Post</b></th>
+                            <th><b>Usuário</b></th>
+                            <th><b></b></th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for linha in posts %}
+                        <tr>
+                            <td>{{linha.msg_resumo()}}</td>
+                            <td>{{linha.user.nome}}</td>
+                            <td></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+{% endblock %}

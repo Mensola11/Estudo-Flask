@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String, nullable=True)
     sobrenome = db.Column(db.String, nullable=True)
     senha = db.Column(db.String, nullable=True)
+    posts = db.relationship('Post', backref='user', lazy=True)
+    
     
 class Contato(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -22,4 +24,11 @@ class Contato(db.Model):
     mensagem = db.Column(db.String, nullable=True)
     respondido = db.Column(db.Integer, default=0)
     
- 
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    data_criacao = db.Column(db.DateTime, default=datetime.utcnow())
+    mensagem = db.Column(db.String, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    
+    def msg_resumo(self):
+        return f"{self.mensagem[:10]}..."
