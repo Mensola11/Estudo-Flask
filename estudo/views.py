@@ -1,9 +1,9 @@
 from estudo import app, db
 from flask import render_template , url_for, request, redirect
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 
-from estudo.models import Contato
-from estudo.forms import ContatoForm, UserForm, LoginForm, PostForm, Post
+from estudo.models import Contato, Post
+from estudo.forms import ContatoForm, UserForm, LoginForm, PostForm
 
 @app.route("/", methods=['GET','POST'])
 def homepage():
@@ -47,10 +47,11 @@ def postnovo():
     return render_template('post_novo.html', form=form)
 
 @app.route('/post/lista/')
+@login_required
 def PostLista():
-    posts=Post.query.all()
-    print(current_user.posts)
-    return render_template('post_lista.html',posts=posts)
+    # posts = Post.query.all()
+    posts = current_user.posts
+    return render_template('post_lista.html', posts=posts)
 
 
 @app.route("/contato/", methods=['GET','POST'])
@@ -82,9 +83,15 @@ def contatoLista():
  
 @app.route('/contato/<int:id>/')
 def contatoDetail(id):
-    obj = Contato.query.get(id)
+    post = Contato.query.get(id)
     
-    return render_template('contato_detail.html', obj=obj)  
+    return render_template('contato_detail.html', post=post)  
+
+@app.route('/post/<int:id>/')
+def PostDetail(id):
+    post = Post.query.get(id)
+    
+    return render_template('post.html', post= post)
         
 
 

@@ -13,6 +13,8 @@ class User(db.Model, UserMixin):
     sobrenome = db.Column(db.String, nullable=True)
     senha = db.Column(db.String, nullable=True)
     posts = db.relationship('Post', backref='user', lazy=True)
+    posts_comentarios = db.relationship('PostComentarios', backref='user', lazy=True)
+    
     
     
 class Contato(db.Model):
@@ -29,6 +31,16 @@ class Post(db.Model):
     data_criacao = db.Column(db.DateTime, default=datetime.utcnow())
     mensagem = db.Column(db.String, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    comentarios = db.relationship('PostComentarios', backref='post', lazy=True)
+
     
     def msg_resumo(self):
         return f"{self.mensagem[:10]}..."
+
+class PostComentarios(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    data_criacao = db.Column(db.DateTime, default=datetime.utcnow())
+    comentario = db.Column(db.String, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=True)
+    
