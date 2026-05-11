@@ -1,9 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField, FileField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 
-from estudo import db, bcrypt
-from estudo.models import Contato, User, Post
+from estudo import db, bcrypt, app
+from estudo.models import Contato, User, Post, PostComentarios
+import os
+from werkzeug.utils import secure_filename
 
 class UserForm(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired()])
@@ -68,24 +70,42 @@ class ContatoForm(FlaskForm):
         
 class PostForm(FlaskForm):
     mensagem = StringField('Mensagem', validators=[DataRequired()])
+    imagem = FileField('Imagem', validators=[DataRequired()])
     btnSubmit = SubmitField('Enviar')
     
     def save(self, user_id):
+        imagem =self.imagem.data
+        nome_seguro = secure_filename(imagem.filename)      
         post = Post(
             mensagem = self.mensagem.data,
-            user_id=user_id
+            user_id=user_id,
+            imagem = nome_seguro
         )
+        
+        caminho1 = os.path.join(
+            os.path.abspath(os.path.dirname(__file__)),
+            app.config['UPLOAD_FILES'],
+            'post',
+            nome_seguro
+        )
+        
+        diretorio = os.path.dirname(caminho1)
+        if not os.path.exists(r'C:\Users\emerson.santana\Desktop\Estudo-Flask\estudo\static\data\post'):
+            os.makedirs(r'C:\Users\emerson.santana\Desktop\Estudo-Flask\estudo\static\data\post')
+        imagem.save(caminho1)
+        
         
         db.session.add(post)
         db.session.commit()
         
 class PostComentariosForm(FlaskForm):
-    mensagem = StringField('Mensagem', validators=[DataRequired()])
+    comentario = StringField('Comentário:', validators=[DataRequired()])
     btnSubmit = SubmitField('Enviar')
     
     def save(self, user_id, post_id):
-        comentario = Post(
-            mensagem = self.mensagem.data,
+        comentario = PostComentarios(
+            comentario = self.comentario.data,
+            user_id=user_id,
             post_id=post_id
         )
         
