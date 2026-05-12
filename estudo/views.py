@@ -73,7 +73,8 @@ def contato():
 @login_required
 def contatoLista():
      context = {}
-     if current_user != 1: return redirect(url_for('homepage'))
+     if current_user == 1: return redirect(url_for('homepage')) # Esse código é para impedir que usuários comuns acessem a lista de contatos, apenas o admin pode acessar
+     
           
      if request.method == 'GET':
          pesquisa = request.args.get('pesquisa','')         

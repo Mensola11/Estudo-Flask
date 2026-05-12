@@ -22,14 +22,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for linha in posts %}
+                        {% for post in posts %}
                         <tr>
-                            <td>{{linha.msg_resumo()}}</td>
-                            <td>{{linha.user.nome}}</td>
-                            <td> <a href="{{ url_for('PostDetail', id=linha.id) }}">Detalhes</a></td>
+                            <td>{{post.msg_resumo()}}</td>
+                            <td>{{post.user.nome}}</td>
+                            <td> <a href="{{ url_for('PostDetail', id=post.id) }}">Detalhes</a></td>
                         </tr>
-                        <hr>
-                        <img src="{{ url_for('static', filename='data/post/{}'.format(post.imagem))}}"> 
                         {% endfor %}
                     </tbody>
                 </table>

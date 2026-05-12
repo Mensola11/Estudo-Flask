@@ -76,7 +76,7 @@ class PostForm(FlaskForm):
     def save(self, user_id):
         imagem =self.imagem.data
         nome_seguro = secure_filename(imagem.filename)      
-        post = Post(
+        post = Post (
             mensagem = self.mensagem.data,
             user_id=user_id,
             imagem = nome_seguro
@@ -89,12 +89,7 @@ class PostForm(FlaskForm):
             nome_seguro
         )
         
-        diretorio = os.path.dirname(caminho1)
-        if not os.path.exists(r'C:\Users\emerson.santana\Desktop\Estudo-Flask\estudo\static\data\post'):
-            os.makedirs(r'C:\Users\emerson.santana\Desktop\Estudo-Flask\estudo\static\data\post')
         imagem.save(caminho1)
-        
-        
         db.session.add(post)
         db.session.commit()
         

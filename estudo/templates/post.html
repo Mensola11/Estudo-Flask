@@ -8,9 +8,9 @@
             <div class="col-12">
                 <h3>Post:</h3>
                 <div class="col-12 mb-4 border rounded p-4 shadow">
-                    <p>{{post.mensagem}}</p>
+                    <p class="text-center">{{post.mensagem}}</p>
                     <hr>
-                    <img src="{{ url_for('static', filename='data/post/{}'.format(post.imagem))}}">
+                    <img src="{{ url_for('static', filename='data/post/{}'.format(post.imagem))}}" style="max-width: 300px; margin: auto; display: block;">
                 </div>
         </div>
     </div>
@@ -25,6 +25,7 @@
 
             </form>
     </div>
+    <h3>Comentários:</h3>
     <hr>
     <div class="col-12">
         {% for c in post.comentarios %}
