@@ -91,7 +91,7 @@ def contatoLista():
 @login_required
 def contatoDetail(id):
     post = Contato.query.get(id)
-    return render_template('contato_detail.html', post=post)  
+    return render_template('contato_detail.html', obj=post)  
 
 @app.route('/post/<int:id>/', methods=['GET','POST'])
 @login_required

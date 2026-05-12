@@ -4,29 +4,28 @@
 
 {%include 'nav.html'%}
 
-<h2 "mt-4">Contato</h2>
+<h2 class="mt-4">Contato</h2>
 
 <div class="row mt-4">
-    <div class="col-md-6" "mt-4">
+    <div class="col-md-6 mt-4">
         <b>Nome:</b>
-        <input type="text" value="{{obj.nome}}" class="form-control bg-secondary mb-4 text-white shadow" readonly>
+        <input type="text" value="{{ obj.nome }}" class="form-control bg-secondary mb-4 text-white shadow" readonly>
     </div>
 
-    <div class="col-md-6" "mt-4">
+    <div class="col-md-6 mt-4">
         <b>E-mail:</b>
-        <input type="text" value="{{obj.email}}" class="form-control bg-secondary mb-4 text-white shadow" readonly>
+        <input type="text" value="{{ obj.email }}" class="form-control bg-secondary mb-4 text-white shadow" readonly>
     </div>
 
-    <div class="col-12" "mt-4">
+    <div class="col-12 mt-4">
         <b>Assunto:</b>
-        <input type="text" value="{{obj.assunto}}" class="form-control bg-secondary mb-4 text-white shadow" readonly>
+        <input type="text" value="{{ obj.assunto }}" class="form-control bg-secondary mb-4 text-white shadow" readonly>
     </div>
 
-    <div class="col-12" "mt-4">
+    <div class="col-12 mt-4">
         <b>Mensagem:</b>
-        <textarea type="text" rows="10" value="" class="form-control bg-secondary mb-4 text-white shadow" readonly> {{obj.mensagem}} </textarea>
+        <textarea rows="10" class="form-control bg-secondary mb-4 text-white shadow" readonly>{{ obj.mensagem }}</textarea>
     </div>
-
 </div>
 
 {% endblock %}
